@@ -13,7 +13,6 @@ from database.users_chats_db import db
 from database.ia_filterdb import Media, get_search_results, get_bad_files, get_file_details
 import random
 lock = asyncio.Lock()
-from .Extra.checkFsub import is_user_fsub
 import traceback
 from fuzzywuzzy import process
 BUTTONS = {}
@@ -45,7 +44,7 @@ async def pm_search(client, message):
         await auto_filter(client, message)
     else:
         await message.reply_text("<b><i>ɪ ᴀᴍ ɴᴏᴛ ᴡᴏʀᴋɪɴɢ ʜᴇʀᴇ. ꜱᴇᴀʀᴄʜ ᴍᴏᴠɪᴇꜱ ɪɴ ᴏᴜʀ ᴍᴏᴠɪᴇ ꜱᴇᴀʀᴄʜ ɢʀᴏᴜᴘ.</i></b>",
-                                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 ᴍᴏᴠɪᴇ ꜱᴇᴀʀᴄʜ ɢʀᴏᴜᴘ ", url=f'https://t.me/Movies_crown_Search_Group')]]))
+                                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 ᴍᴏᴠɪᴇ ꜱᴇᴀʀᴄʜ ɢʀᴏᴜᴘ ", url=f'https://t.me/JisshuMovieZone')]]))
         
     
 @Client.on_message(filters.group & filters.text & filters.incoming)
@@ -55,9 +54,7 @@ async def group_search(client, message):
     user_id = message.from_user.id if message.from_user else None
     chat_id = message.chat.id
     settings = await get_settings(chat_id)
-    ifJoinedFsub = await is_user_fsub(client,message)
-    if ifJoinedFsub == False:
-        return
+ 
     if message.chat.id == SUPPORT_GROUP :
                 if message.text.startswith("/"):
                     return
@@ -760,7 +757,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('🎗️ ɢᴇᴛ ʏᴏᴜʀ ғɪʟᴇ 🎗️', url=f'https://t.me/{temp.U_NAME}?start=file_{chat_id}_{file_id}')
         ]]
         reply_markup = InlineKeyboardMarkup(btn)
-        return await query.message.edit(text=f'<b>ᴛʜᴀɴᴋs ғᴏʀ ᴊᴏɪɴɪɴɢ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 🔥😗\nɢᴇᴛ ʏᴏᴜʀ ғɪʟᴇ : {files.file_name[:20]}.. ʙʏ ᴄʟɪᴄᴋɪɴɢ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ⚡\n\nᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ :@Crown_Owner_Babe</b>',reply_markup=reply_markup)
+        return await query.message.edit(text=f'<b>ᴛʜᴀɴᴋs ғᴏʀ ᴊᴏɪɴɪɴɢ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 🔥😗\nɢᴇᴛ ʏᴏᴜʀ ғɪʟᴇ : {files.file_name[:20]}.. ʙʏ ᴄʟɪᴄᴋɪɴɢ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ⚡\n\nᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : @JISSHU_BOTS</b>',reply_markup=reply_markup)
 
     elif query.data == "give_trial":
         user_id = query.from_user.id
@@ -1008,13 +1005,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             disable_web_page_preview = True
 	)
     elif query.data == "mydevelopers":
-        await query.answer("Meet the minds behind this bot:\n\n👨‍💻@Crown_Owner_Babe👨‍💻@Movies_crown_Channel_backup👨‍💻\n\n\n❤️ real developer jisshu!", show_alert=True)
-
-	    elif query.data == "Source":
+        await query.answer("Meet the minds behind this bot:\n\n👨‍💻 @JISSHU_BOTS\n👨‍💻 @IM_JISSHU\n👨‍💻 @JOYBOY_ZORO\n👨‍💻 @TG_Anonymous_Official\n\n\n❤️ A big thank you for making this bot awesome!", show_alert=True)
+ 
+    elif query.data == "Source":
         buttons = [[
             InlineKeyboardButton('Repo', url='https://github.com/Jisshubot/Jisshu-Filter-Bot')
         ],[
-	    InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='about'),
+            InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='about'),
             InlineKeyboardButton('• ᴄʟᴏsᴇ •', callback_data='close_data')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -1041,7 +1038,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 	      InlineKeyboardButton('⇆ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘs ⇆', url=f'http://t.me/{temp.U_NAME}?startgroup=start')
        ],[
               InlineKeyboardButton('⋞ ʜᴏᴍᴇ', callback_data='features'),
-              InlineKeyboardButton('sᴜᴘᴘᴏʀᴛ', url=f'https://t.me/Movies_crown_Channel_backup'),
+              InlineKeyboardButton('sᴜᴘᴘᴏʀᴛ', url=f'https://t.me/Jisshu_support'),
        ]]
        reply_markup = InlineKeyboardMarkup(buttons)
        await client.edit_message_media(
