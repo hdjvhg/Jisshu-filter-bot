@@ -1010,8 +1010,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "mydevelopers":
         await query.answer("Meet the minds behind this bot:\n\n👨‍💻@Crown_Owner_Babe👨‍💻@Movies_crown_Channel_backup👨‍💻\n\n\n❤️ real developer jisshu!", show_alert=True)
  
-    elif
-
+    buttons = [[
             InlineKeyboardButton('⋞ ʙᴀᴄᴋ', callback_data='about'),
             InlineKeyboardButton('• ᴄʟᴏsᴇ •', callback_data='close_data')
         ]]
